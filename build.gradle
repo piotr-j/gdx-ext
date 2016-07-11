@@ -187,6 +187,8 @@ project(":ios-moe") {
         compile project(':core')
         compile "com.badlogicgames.gdx:gdx-backend-moe:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
+
+        compile fileTree(dir:'libs', include:'*.jar')
     }
 }
 

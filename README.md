@@ -13,13 +13,21 @@ gradle uploadArchives -PLOCAL=true
 
 ### iOS - RoboVM
 
+it is possible to simplify this a bit, by putting robovm.xml and libs/lib*.a 
+into META-INF/robovm/ios/ folder inside the jar, but do we want to ship the binary?
+ 
+
+copy `libLibraryTestUniversal.a` to `libs` folder in ios folder
+
+add to `build.gradle`
+
 `compile "io.piotrjastrzebski.gdxext:gdx-ext-core:$gdxExtVersion"`
 
 add this inside `robovm.xml`
 
-`<pattern>io.piotrjastrzebski.gdxext.ios.**</pattern>`
+`<pattern>io.piotrjastrzebski.gdxext.ios.*</pattern>` to `<forceLinkClasses>` block
 
-to `<forceLinkClasses>` block
+`<lib>libs/libLibraryTestUniversal.a</lib>` to `libs` block
 
 ### iOS - MOE
 
