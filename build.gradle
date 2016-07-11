@@ -14,7 +14,8 @@ buildscript {
         classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
         classpath 'com.android.tools.build:gradle:1.5.0'
         classpath 'com.intel.gradle:moeGradlePlugin:1.1.0.final-1'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4'
+        classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.1.0'
+//        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4'
     }
 }
 
@@ -26,6 +27,7 @@ allprojects {
         appName = 'gdx-ext'
         gdxVersion = '1.9.3'
         androidSDKVersion = '4.12.1'
+        roboVMVersion = '2.1.0'
     }
 
     repositories {
@@ -144,6 +146,24 @@ project(":html") {
     }
 }
 
+project(":ios") {
+    apply plugin: "java"
+    apply plugin: "robovm"
+
+    apply from: '../publish.gradle'
+    configurations {
+        custom
+        compile.extendsFrom custom
+        natives
+    }
+    dependencies {
+        compile project(":core")
+        compile "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
+        compile "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
+        compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
+    }
+}
 
 project(":ios-moe") {
     apply plugin: 'java'

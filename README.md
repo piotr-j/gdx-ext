@@ -11,6 +11,23 @@ Android, iOS (7+), Desktop, GWT/HTML
 ## Local install
 gradle uploadArchives -PLOCAL=true
 
+### iOS - RoboVM
+
+`compile "io.piotrjastrzebski.gdxext:gdx-ext-core:$gdxExtVersion"`
+
+add this inside `robovm.xml`
+
+`<pattern>io.piotrjastrzebski.gdxext.ios.**</pattern>`
+
+to `<forceLinkClasses>` block
+
+### iOS - MOE
+
+add `compile "io.piotrjastrzebski.gdxext:gdx-ext-ios-moe:$gdxExtVersion"`
+
+to `build.gradle:ios-moe`
+
+
 ##Reporting Issues
 
 Something not working quite as expected? Do you need a feature that has not been implemented yet? Check the issue tracker and add a new one if your problem is not already listed. Please try to provide a detailed description of your problem, including the steps to reproduce it.

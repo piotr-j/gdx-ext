@@ -65,10 +65,18 @@ public final class GdxExtManager {
 	private static GdxExt installIOS () {
 		try {
 			Class<?> gdxExtClazz =
-				ClassReflection.forName("io.piotrjastrzebski.gdxext.iosmoe.IosMoeGdxExt");
+				ClassReflection.forName("io.piotrjastrzebski.gdxext.ios.IosRoboVMGdxExt");
 			gdxExt = (GdxExt)ClassReflection.newInstance(gdxExtClazz);
 		} catch (Exception ex) {
-			Gdx.app.error(TAG, "Desktop CommonInterface failed to install!", ex);
+			try {
+				Class<?> gdxExtClazz =
+					ClassReflection.forName("io.piotrjastrzebski.gdxext.iosmoe.IosMoeGdxExt");
+				gdxExt = (GdxExt)ClassReflection.newInstance(gdxExtClazz);
+			} catch (Exception ex2) {
+				Gdx.app.error(TAG, "Both ios backends failed to load!");
+//				Gdx.app.error(TAG, "iOS RoboVM CommonInterface failed to install!", ex);
+//				Gdx.app.error(TAG, "iOS Moe CommonInterface failed to install!", ex2);
+			}
 		}
 		return gdxExt;
 	}
