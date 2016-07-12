@@ -1,0 +1,9 @@
+<config>
+  <forceLinkClasses>
+    <!--This is needed for reflection usage-->
+    <pattern>io.piotrjastrzebski.gdxext.ios.*</pattern>
+  </forceLinkClasses>
+  <libs>
+      <lib>libs/libLibraryTestUniversal.a</lib>
+  </libs>
+</config>

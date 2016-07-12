@@ -118,6 +118,7 @@ afterEvaluate { project ->
         from sourceSets.main.output.classesDir
         from configurations.custom.collect { it.isDirectory() ? it : zipTree(it) }
         //from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        from sourceSets.main.resources
         classifier = 'library'
     }
 
