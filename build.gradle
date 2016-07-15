@@ -42,18 +42,17 @@ allprojects {
 }
 
 project(":android") {
-//    apply plugin: 'com.android.library'
-//    apply plugin : 'android'
-//    apply plugin: 'com.github.dcendents.android-maven'
-
-//    apply from : '../androidpublish.gradle'
-//    apply from : '../publish.gradle'
-
-
     configurations {
         custom
         compile.extendsFrom custom
         natives
+    }
+
+    repositories {
+        flatDir {
+            // needed for aar's
+            dirs 'libs'
+        }
     }
 
     eclipse {
@@ -62,14 +61,12 @@ project(":android") {
         }
     }
 
-//    ext {
-//        ARTIFACTID = 'android'
-//    }
-
     dependencies {
         compile project(':core')
         compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
 //        compile fileTree(dir: 'libs', include: '*.jar')
+        // note; apparently, its not feasible to bundle the aar inside our own aar, so we need to distribute both
+        compile(name:'aartestlib-debug', ext:'aar')
     }
 }
 
